@@ -3,8 +3,12 @@ import axios from 'axios';
 import StyleAddRecipe from './AddRecipe.module.css';
 import Footer from '../../Component/Footer';
 import { Link, useNavigate } from "react-router-dom";
+import {addrecipe} from '../../redux/action/recipe'
+import { useDispatch } from 'react-redux';
+
 
 const AddRecipe = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const hiddenFileInput = useRef(null);
@@ -31,11 +35,11 @@ const AddRecipe = () => {
         e.preventDefault();
         // console.log(form)
         
-        let inputForm = new FormData ()
-      inputForm.append('title', form.title )
-      inputForm.append('ingredients', form.ingredients )
-      inputForm.append('photo', image)
-      inputForm.append('video', form.video)
+        let body = new FormData ()
+      body.append('title', form.title )
+      body.append('ingredients', form.ingredients )
+      body.append('photo', image)
+      body.append('video', form.video)
 
             // const body = {
             //     photo: form.photo,
@@ -43,12 +47,8 @@ const AddRecipe = () => {
             //     ingredients: form.ingredients,
             //     video: form.video
             // }
-
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/recipe`, inputForm, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                  },
-            })
+            dispatch(
+                addrecipe(body)
                 .then((response) => {
                     // if(response.data.code !== 200){
                     //     alert('error:' + response.data.message)
@@ -67,6 +67,8 @@ const AddRecipe = () => {
                 }).catch((err) => {
                     console.error(err)
                 })
+            )
+            
         
     }
 
@@ -103,7 +105,7 @@ const AddRecipe = () => {
                             <div className="col-md-12 d-flex flex-column justify-content-center align-items-center">
                                 <div className={`col-md-7 mb-4 d-flex flex-column justify-content-center  ${StyleAddRecipe.addphoto}`}>
                                     <input className="form-control" type="file" ref={hiddenFileInput} htmlFor="image" onClick={handleClick} id="addphoto" onChange={handleChange}  style={{ display: 'none' }}  />
-                                    <div className="text-center" type="button" htmlFor="image" onClick={handleClick}  >
+                                    <div className="text-center" type="button"  htmlFor="image" onClick={handleClick}  >
                                         <i className="fa-regular fa-image fa-4x mb-3" ></i> <br /> Add Photo</div>
                                 </div>
                                 

@@ -6,52 +6,88 @@ import PhotoFood2 from '../../asset/img/bananaspancake.png'
 import Footer from '../../Component/Footer'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
-
+import { getRecipe, deleterecipe } from '../../redux/action/recipe'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Profile = () => {
+  const dispatch = useDispatch()
   const [recipe, setRecipe] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [iserror, setIsError] = useState(false);
-
   const data = JSON.parse(localStorage.getItem('data'));
   const navigate = useNavigate();
+  const [page, setPage] = useState(1)
+  const [sort, setSort] = useState("asc")
+
+  const detailyo = useSelector((state) => {
+    return state.detailyo
+  })
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/recipe/`)
-      .then((response) => {
-        console.log(response)
-        setTimeout(() => {
-          setRecipe(response.data.rows)
-          setLoading(false);
-        }, 2000);
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }, [])
+    dispatch(
+      getRecipe(sort, 3, page)
+      // getRecipe(sort, 3, page)
+      // .then((response) => {
+      //   // console.log(response)
+      //   setTimeout(() => {
+      //     setRecipe(response.data.rows)
+      //     setLoading(false);
+      //   }, 2000);
+      //   // console.log(response)
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // })
+    )
+  }, [sort, page])
+
+  const handleSortasc = () => {
+    if (sort == "asc") {
+      setSort("desc");
+    } else {
+      setSort("asc");
+    }
+    dispatch(getRecipe(sort, 3, page));
+  };
+
+  const NextPage = () => {
+    setPage(page + 1);
+    dispatch(getRecipe(sort, 3, page));
+    console.log(page);
+  };
+  const PreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+      console.log(page);
+      dispatch(getRecipe(sort, 3, page - 1));
+    }
+  };
 
   const deleteFoods = (id, e) => {
     e.preventDefault();
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`)
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
+    // axios
+    //   .delete(`${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`)
+    dispatch(
+      deleterecipe(id)
+        .then((response) => {
+          console.log(response);
+          console.log(response.data);
 
-        const posts = recipe.filter((item) => item.id !== id);
-        setRecipe({ data: posts });
-        alert("Delete Success");
-        return navigate('/landingpage')
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Delete Failed");
-      });
+          const posts = recipe.filter((item) => item.id !== id);
+          setRecipe({ data: posts });
+          alert("Delete Success");
+          return navigate('/landingpage')
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Delete Failed");
+        })
+    )
+
   }
   return (
     <>
+      {/* {JSON.stringify(detailyo)} */}
       {/* <!-- navbar --> */}
       <nav className="navbar navbar-expand-lg fixed-top bg-white">
         <div className="container">
@@ -102,6 +138,7 @@ const Profile = () => {
           </div>
         </div>
       </section>
+
       {/* <!-- menu --> */}
       <section className="menu">
         <div className="container-fluid">
@@ -118,21 +155,34 @@ const Profile = () => {
               </p>
             </div>
             <hr className={StyleProfile.linemenu} />
+            <p className='text-center'>
+              sort By
+            </p>
+            <button
+              className="btn btn-outline-primary d-grid gap-2 col-1 mx-auto"
+              // disabled={detailyo.data <= 0}
+              onClick={() => handleSortasc()}
+            >
+              {sort.toUpperCase()}
+            </button>
             <div className=" collapse multi-collapse2" id="foods1" >
               <div className="row d-flex flex-row  kolom2">
+
+
                 {
-                  loading ? (
+                  detailyo.isLoading ? (
                     <h2>Loading</h2>
+                  ) : detailyo.isError ? (
+                    <h2>error</h2>
+                  ) : detailyo.data == 0 ? (
+                    <h2> Data Not Found</h2>
                   ) : (
-                    recipe.map((item) => {
+                    detailyo.data.map((item) => {
                       return (
                         <>
                           <div key={item.id} className={`col-md-4 my-3 d-flex flex-row ${StyleProfile.foodbox}`}>
-                            {/* {data.photo} */}
-                            {/* {data.title} */}
                             <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={StyleProfile.gambar} />
                             <p className={`mx-1 ${StyleProfile.titlefood}`}>
-                              {/* Bananas Pancake */}
                               {item.title}
                             </p>
 
@@ -147,6 +197,33 @@ const Profile = () => {
                     })
                   )
                 }
+              </div>
+              <div className="d-flex justify-content-center">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      className="btn btn-warning-custom page-link"
+                      disabled={page == 1}
+                      onClick={() => PreviousPage()}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  <li style={{ marginLeft: 3 }}></li>
+                  <button className="btn btn-primary-custom page-link">
+                    {page}
+                  </button>
+                  <li style={{ marginLeft: 3 }} className="page-item">
+                    <button
+                      className="btn btn-primary-custom page-link"
+                      disabled={detailyo.data <= 0}
+                      onClick={() => NextPage()}
+                    >
+                      Next
+                    </button>
+                  </li>
+
+                </ul>
               </div>
             </div>
 

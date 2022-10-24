@@ -7,28 +7,39 @@ import photocomment from '../../asset/img/photodetail.png'
 import Footer from '../../Component/Footer';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { detailrecipe } from '../../redux/action/detailrecipe';
 
 const DetailRecipe = () => {
+    //get action
+    const dispatch = useDispatch()
+     // useselector untuk get reducer
+    const detailya = useSelector((state) => {
+        return state.detailya
+    })
 
+    console.log(detailya)
+    
     const { id } = useParams();
-    const [detail, setDetail] = useState([]);
+    // const [detail, setDetail] = useState([]);
     //hook useEffect
     useEffect(() => {
-        //panggil method "fetchData"
-        getById();
+        dispatch(
+            detailrecipe(id)
+        )
     }, []);
     //function "getPostById"
-    const getById = async () => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`
-        );
-        //get response data
-        const data = await response.data;
-        //assign data to state
-        setDetail(data);
-    };
+    // const getById = async () => {
+    //     // addrecipe(id)
+    //     const response = await 
+    //     axios.get(
+    //         `${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`
+    //     );
+    //     //get response data
+    //     const data = await response.data;
+    //     //assign data to state
+    //     setDetail(data);
+    // };
 
     return (
         <>
@@ -59,9 +70,9 @@ const DetailRecipe = () => {
             <section className="judul">
                 <div className="container-fluid">
                 {
-                    detail.map((item) => (
+                    detailya.data.map((item, index) => (
                         <div className="row">
-                        <div className="col-md-12 mx-auto align-items-center ">
+                        <div key={index} className="col-md-12 mx-auto align-items-center ">
                             <h1 className={`text-center ${StyleDetailRecipe.title}`}>
                             {item.title} 
                             </h1>
@@ -71,9 +82,9 @@ const DetailRecipe = () => {
                 }
                     
                 {
-                    detail.map((item) => (
+                    detailya.data.map((item, index) => (
                         <div className="row">
-                        <div className="col-md-8 offset-4 mx-auto">
+                        <div  key={index} className=" col-md-8 offset-4 mx-auto">
                             <div className={StyleDetailRecipe.foodbox}>
                                 <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={`mx-auto d-block ${StyleDetailRecipe.titleimg}`} alt="" />
                                 <button type="button" className={StyleDetailRecipe.bookmark} >
@@ -93,9 +104,9 @@ const DetailRecipe = () => {
             <section className="mt-5 recipe">
                 <div className="container">
                     {
-                        detail.map((item) => (                      
+                        detailya.data.map((item, index) => (                      
                             <div className="row">
-                                <div className="col-md-12">
+                                <div key={index} className="col-md-12">
                                     <h1 className={`text-start ${StyleDetailRecipe.ingredients}`}> Ingredients </h1>
                                     <p className={`text-start mt-4 ${StyleDetailRecipe.subingredients}`} />
                                     {item.ingredients} 

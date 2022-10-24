@@ -3,10 +3,11 @@ import axios from 'axios';
 import StyleUpdateRecipe from './UpdateRecipe.module.css';
 import Footer from '../../Component/Footer';
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-
+import { updaterecipe } from '../../redux/action/recipe';
+import { useDispatch } from 'react-redux';
 
 const UpdateRecipe = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const hiddenFileInput = useRef(null);
     // const navigate = useNavigate();
@@ -15,7 +16,7 @@ const UpdateRecipe = () => {
     const handleClick = (event) => {
         hiddenFileInput.current.click();
     };
-    
+
     const { id } = useParams();
     const [update, setUpdate] = useState([]);
     //function "getPostById"
@@ -24,7 +25,6 @@ const UpdateRecipe = () => {
             `${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`
         );
         const data = await response.data;
-
         //usestate
         setUpdate(data);
     };
@@ -39,32 +39,36 @@ const UpdateRecipe = () => {
         let formData = new FormData(event.target);
         formData.append("photo", image);
         handlePost(Object.fromEntries(formData));
-      };
-      const UpdatePhoto = (event) => {
+    };
+    const UpdatePhoto = (event) => {
         const fileUploaded = event.target.files[0];
         document.getElementById("addphoto").innerHTML = fileUploaded.name;
         setImage(fileUploaded);
-      };
-    const handlePost = (form) => {
-        axios
-          .put(`${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`, form, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            console.log(res);
-            setImage("");
-            alert("Update Success");
-            return navigate("/profile");
-          })
-          .catch((err) => {
-            console.log(err);
-            alert("Update Failed");
-          });
-      };
+    };
 
-      return (
+    const handlePost = (form) => {
+        dispatch(
+            updaterecipe(form, id)
+                // axios
+                //   .put(`${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`, form, {
+                //     headers: {
+                //       "Content-Type": "multipart/form-data",
+                //     },
+                //   })
+                .then((res) => {
+                    console.log(res);
+                    setImage("");
+                    alert("Update Success");
+                    return navigate("/profile");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert("Update Failed");
+                })
+        )
+    };
+
+    return (
         <>
             {/* <!-- navbar --> */}
             <nav className="navbar navbar-expand-lg fixed-top bg-white">
@@ -104,7 +108,7 @@ const UpdateRecipe = () => {
                                     {
                                         update.map((item) => (
                                             <div className="form-floating">
-                                                <input type="text " className={`form-control ${StyleUpdateRecipe.costuminput}`} id="floatingInputGroup1" name='title' defaultValue={item.title}  />
+                                                <input type="text " className={`form-control ${StyleUpdateRecipe.costuminput}`} id="floatingInputGroup1" name='title' defaultValue={item.title} />
                                                 <label htmlFor="floatingInputGroup1 ">Title</label>
                                             </div>
                                         ))
@@ -112,7 +116,7 @@ const UpdateRecipe = () => {
                                     {
                                         update.map((item) => (
                                             <div className="form-floating my-4">
-                                                <textarea className={`form-control ${StyleUpdateRecipe.costuminput}`} defaultValue={item.ingredients} id="floatingTextarea2" name='ingredients' 
+                                                <textarea className={`form-control ${StyleUpdateRecipe.costuminput}`} defaultValue={item.ingredients} id="floatingTextarea2" name='ingredients'
                                                     style={{ height: '200px' }}></textarea>
                                                 <label htmlFor="floatingTextarea2">Ingredients</label>
                                             </div>
@@ -137,6 +141,6 @@ const UpdateRecipe = () => {
             <Footer />
         </>
     )
-} 
+}
 
 export default UpdateRecipe

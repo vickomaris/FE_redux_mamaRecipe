@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import StyleLogin from './Login.module.css';
 import Logo from '../../asset/img/Group697.svg';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/action/login";
 
 const Login = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const [form, setform] = useState({
@@ -17,7 +20,9 @@ const Login = () => {
         e.preventDefault();
         console.log(form)
         //root dari backend
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
+        dispatch(
+            login(form)
+            // axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, form)
             .then((response) => {
                 console.log(response.data)
                 if (response.data.status !== 'success') {
@@ -31,6 +36,7 @@ const Login = () => {
             .catch((err) => {
                 console.log(err);
             })
+        )     
     }
 
     return (
