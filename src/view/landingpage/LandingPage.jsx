@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import StyleLanding from './LandingPage.module.css'
 import UserIcon from '../../asset/img/Usericon.png'
 import PhotoEgg from '../../asset/img/eggsquare.png'
+import PhotoProfile from '../../asset/img/profile.png'
+
 import Square from '../../asset/img/kotak.png'
 import SquareFood from '../../asset/img/kotakfood.png'
 import PhotoBread from '../../asset/img/roti.png'
@@ -70,7 +72,7 @@ const LandingPage = () => {
                             <ul className="navbar-nav">
                                 <li className="nav-link"> <Link to="/" className={`${StyleLanding['nav-link']} active`}>
                                     <div className="icon" onClick={logout}>
-                                        <img src={UserIcon} alt="" />
+                                        <img src={PhotoProfile} alt="" style={{height:"50px"}} className='me-3' />
                                         {/* login  */}
                                         {data.username}
                                     </div>
