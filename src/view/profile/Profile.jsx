@@ -87,7 +87,7 @@ const Profile = () => {
   }
   return (
     <>
-      {/* {JSON.stringify(detailyo)} */}
+      
       {/* <!-- navbar --> */}
       <nav className="navbar navbar-expand-lg fixed-top bg-white">
         <div className="container">
@@ -112,6 +112,7 @@ const Profile = () => {
         </div>
       </nav>
       {/* <!-- photo profile --> */}
+      
       <section className="profile">
         <div className="container-fluid">
           <div className="row">
@@ -140,6 +141,7 @@ const Profile = () => {
       </section>
 
       {/* <!-- menu --> */}
+      {/* {JSON.stringify(detailyo)} */}
       <section className="menu">
         <div className="container-fluid">
           <div className="row">
@@ -167,29 +169,25 @@ const Profile = () => {
             </button>
             <div className=" collapse multi-collapse2" id="foods1" >
               <div className="row d-flex flex-row  kolom2">
-
-
                 {
                   detailyo.isLoading ? (
                     <h2>Loading</h2>
                   ) : detailyo.isError ? (
                     <h2>error</h2>
-                  ) : detailyo.data == 0 ? (
+                  ) : 
+                  detailyo.data == 0 ? (
                     <h2> Data Not Found</h2>
                   ) : (
-                    detailyo.data.map((item) => {
+                    detailyo.data.map((item, index) => {
                       return (
                         <>
-                          <div key={item.id} className={`col-md-4 my-3 d-flex flex-row ${StyleProfile.foodbox}`}>
+                          <div key={index} className={`col-md-4 my-3 d-flex flex-row ${StyleProfile.foodbox}`}>
                             <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={StyleProfile.gambar} />
                             <p className={`mx-1 ${StyleProfile.titlefood}`}>
                               {item.title}
                             </p>
-
                             <Link to={`/detailrecipe/${item.id}`}> <button className={StyleProfile.btndetail} type="button" > <i className="fa-solid fa-eye"></i> </button> </Link>
-
                             <Link to={`/updaterecipe/${item.id}`} > <button className={StyleProfile.btnupdate} > <i className="fa-solid fa-pen-to-square"></i></button></Link>
-
                             <button className={StyleProfile.btndelete} onClick={(e) => deleteFoods(item.id, e)} > <i className="fa-solid fa-trash"></i></button>
                           </div>
                         </>

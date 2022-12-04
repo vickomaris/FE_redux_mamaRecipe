@@ -81,7 +81,7 @@ const DetailRecipe = () => {
                     ))
                 }
                     
-                {
+                {/* {
                     detailya.data.map((item, index) => (
                         <div className="row">
                         <div  key={index} className=" col-md-8 offset-4 mx-auto">
@@ -97,7 +97,7 @@ const DetailRecipe = () => {
                         </div>
                     </div>
                     ))
-                }
+                } */}
                 </div>
             </section>
             {/* <!-- recipe --> */}
