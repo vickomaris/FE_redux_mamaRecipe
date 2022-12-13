@@ -100,8 +100,9 @@ This app was built with some technologies below:
 
 ## Packages Included 
 - <b>NPM dependencies</b>
-```
-  ![](https://img.shields.io/badge/bcrypt-v5.0.1-blue) `
+
+
+  ![](https://img.shields.io/badge/bcrypt-v5.0.1-blue)
   ![](https://img.shields.io/badge/body--parser-v1.19.2-blue)
   ![](https://img.shields.io/badge/cors-v2.8.5-blue)
   ![](https://img.shields.io/badge/dotenv-v16.0.0-blue)
@@ -120,7 +121,7 @@ This app was built with some technologies below:
   ![](https://img.shields.io/badge/jwt-decode-v3.1.2-blue)
   ![](https://img.shields.io/badge/axios-v0.26.1-blue)
   ![](https://img.shields.io/badge/bootstrap-v5.1.3-blue)
-  ```
+
 
 ## Related Project
 RESTful API for this web application, clone this for development Foodtemplate.\
