@@ -5,6 +5,7 @@
 - [Built With](#built-with)
 - [Screenshoots](#screenshoots)
 - [Structure Folder](#structure-folder)
+- [Packages Includes](#packages-included)
 - [Related Project](#related-project)
 - [Contributing](#contributing)
 - [Run Project](#run-project)
@@ -84,7 +85,7 @@ This app was built with some technologies below:
 </details>
 
 ## Structure Folder 
-<p id='structure-folder'>Frontend</p>
+<b>Frontend</b>
 <ul>
   <li>public || <span><b><i>You can drop anything if that is accesseble for public</i></b></span></li>
   <li>src</li>
@@ -98,7 +99,8 @@ This app was built with some technologies below:
 </ul>
 
 ## Packages Included 
-- <p id='packages-included'>NPM dependencies</p>
+- <b>NPM dependencies</b>
+```
   ![](https://img.shields.io/badge/bcrypt-v5.0.1-blue)
   ![](https://img.shields.io/badge/body--parser-v1.19.2-blue)
   ![](https://img.shields.io/badge/cors-v2.8.5-blue)
@@ -118,7 +120,7 @@ This app was built with some technologies below:
   ![](https://img.shields.io/badge/jwt-decode-v3.1.2-blue)
   ![](https://img.shields.io/badge/axios-v0.26.1-blue)
   ![](https://img.shields.io/badge/bootstrap-v5.1.3-blue)
-  
+  ```
 
 ## Related Project
 RESTful API for this web application, clone this for development Foodtemplate.\
