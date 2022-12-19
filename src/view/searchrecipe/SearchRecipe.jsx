@@ -102,7 +102,7 @@ const SearchRecipe = () => {
                         {
                             title.map((item) => (
                                 <div className={`col-md-4 my-3 d-flex flex-row ${StyleSearchRecipe.foodbox}`}>
-                                    <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={StyleSearchRecipe.gambar} />
+                                    <img src={item.photo_url} className={StyleSearchRecipe.gambar} />
                                     <p className={`mx-1 ${StyleSearchRecipe.titlefood}`}>
                                         {item.title}
                                     </p>

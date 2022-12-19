@@ -220,7 +220,6 @@ const Profile = () => {
                       Next
                     </button>
                   </li>
-
                 </ul>
               </div>
             </div>
