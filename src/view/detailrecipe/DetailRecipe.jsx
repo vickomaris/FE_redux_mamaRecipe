@@ -81,12 +81,12 @@ const DetailRecipe = () => {
                     ))
                 }
                     
-                {/* {
+                {
                     detailya.data.map((item, index) => (
                         <div className="row">
                         <div  key={index} className=" col-md-8 offset-4 mx-auto">
                             <div className={StyleDetailRecipe.foodbox}>
-                                <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={`mx-auto d-block ${StyleDetailRecipe.titleimg}`} alt="" />
+                                <img src={item.photo_url} className={`mx-auto d-block ${StyleDetailRecipe.titleimg}`} alt="" />
                                 <button type="button" className={StyleDetailRecipe.bookmark} >
                                     <img src={bookmarkimg} alt="" />
                                 </button>
@@ -97,7 +97,7 @@ const DetailRecipe = () => {
                         </div>
                     </div>
                     ))
-                } */}
+                }
                 </div>
             </section>
             {/* <!-- recipe --> */}

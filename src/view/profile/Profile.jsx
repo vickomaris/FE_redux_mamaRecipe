@@ -182,7 +182,7 @@ const Profile = () => {
                       return (
                         <>
                           <div key={index} className={`col-md-4 my-3 d-flex flex-row ${StyleProfile.foodbox}`}>
-                            <img src={`${process.env.REACT_APP_BACKEND_URL}/${item.photo}`} className={StyleProfile.gambar} />
+                            <img src={item.photo_url} className={StyleProfile.gambar} />
                             <p className={`mx-1 ${StyleProfile.titlefood}`}>
                               {item.title}
                             </p>

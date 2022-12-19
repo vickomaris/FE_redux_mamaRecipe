@@ -2,7 +2,7 @@
 
 ## Table of contents
 - [Description](#Description)
-- [Built With](#built-with)
+- [Build With](#build-with)
 - [Screenshoots](#screenshoots)
 - [Structure Folder](#structure-folder)
 - [Packages Includes](#packages-included)
@@ -14,7 +14,7 @@
 
 Mama Recipe is a food recipe web application, in this application users can create, view details, update and delete food recipes. The app is built using the PERN stack (Postgresql, Express JS, React JS, Node JS).
 
-## Built With
+## Build With
 This app was built with some technologies below:
 - [JavaScript](https://www.javascript.com/)
 - [Node.js](https://nodejs.org/en/)
@@ -124,9 +124,9 @@ This app was built with some technologies below:
 
 
 ## Related Project
-RESTful API for this web application, clone this for development Foodtemplate.\
-- [backend-MamaRecipe](https://github.com/vickomaris/BE_redux_MamaRecipe)
-- [deploy-vercel](https://fe-redux-mama-recipe.vercel.app/)
+RESTful API for this web application, clone this for development Foodtemplate.
+- [Backend-MamaRecipe](https://github.com/vickomaris/BE_redux_MamaRecipe)
+- [Deploy-MamaRecipe](https://fe-redux-mama-recipe.vercel.app/)
 
 
 ## Contributing
