@@ -141,7 +141,7 @@ const Profile = () => {
       </section>
 
       {/* <!-- menu --> */}
-      {JSON.stringify(detailyo)}
+      {/* {JSON.stringify(detailyo)} */}
       <section className="menu">
         <div className="container-fluid">
           <div className="row">
@@ -169,7 +169,7 @@ const Profile = () => {
             </button>
             <div className=" collapse multi-collapse2" id="foods1" >
               <div className="row d-flex flex-row  kolom2">
-                {/* {
+                {
                   detailyo.isLoading ? (
                     <h2>Loading</h2>
                   ) : detailyo.isError ? (
@@ -194,7 +194,7 @@ const Profile = () => {
                       )
                     })
                   )
-                } */}
+                }
               </div>
               <div className="d-flex justify-content-center">
                 <ul className="pagination">
