@@ -37,8 +37,7 @@ This app was built with some technologies below:
   <summary>
     Home Page
   </summary>
-<img src="/screenshoots/home.PNG" alt="Home" />
-<img src="/screenshoots/home2.PNG" alt="Home2" />
+<img src="/screenshoots/landingpanjang.png" alt="Home" />
 </details>
 
 <details>
