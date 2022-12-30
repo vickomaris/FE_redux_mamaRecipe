@@ -65,7 +65,7 @@ This app was built with some technologies below:
   <summary>
    Update Page
   </summary>
-<img src="/screenshoots/update.PNG" alt="update" />
+<img src="/screenshoots/updatesate.png" alt="update" />
 </details>
 
 <details>
