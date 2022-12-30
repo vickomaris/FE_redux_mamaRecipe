@@ -59,8 +59,7 @@ This app was built with some technologies below:
   <summary>
     Profile
   </summary>
-<img src="/screenshoots/profile.PNG" alt="Profile" />
-<img src="/screenshoots/recipe.PNG" alt="ProfileFood" />
+<img src="/screenshoots/profilebagus.png" alt="Profile" />
 </details>
 
 <details>
