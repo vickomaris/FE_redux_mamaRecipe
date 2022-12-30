@@ -72,7 +72,7 @@ This app was built with some technologies below:
   <summary>
    Detail Page
   </summary>
-<img src="/screenshoots/detail.PNG" alt="detail" />
+<img src="/screenshoots/detailresepsate.jpeg" alt="detail" />
 </details>
 
 <details>
